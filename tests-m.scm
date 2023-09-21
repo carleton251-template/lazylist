@@ -37,6 +37,17 @@
 (test-assert "pair-sum-lazy-big-false-no-error" (not (pair-sum-lazy? (gen-lazy-list 1 100) 201)))
 (test-assert "pair-sum-lazy-small-false-no-error" (not (pair-sum-lazy? (gen-lazy-list 1 10) 32)))
 
+(let ((y (inf-seq 15)))
+  (test-equal "basics3" 15 (car y))
+  (test-equal "basics4" 16 (car ((cdr y))))
+  (test-equal "basics5"  '(15 16 17 18 19 20) (first-n y 6))
+  (test-equal "basics6" 22 (nth y 8)))
+
+(test-equal "filter-mult1" '(3 5) (first-n (filter-multiples (inf-seq 2) 2) 2) )
+(test-equal "filter-mult2"  '(4 5 7 8 10 11) (first-n (filter-multiples (inf-seq 3) 3) 6))
+(test-equal "filter-mult3"  '(5 7 8 9 10 11 13 14 15 16 17 19) (first-n (filter-multiples (inf-seq 5) 6) 12))
+(test-equal "filter-mult4"  '(5 6 8 9 10 11 12 13 15 16 17 18 19) (first-n (filter-multiples (gen-lazy-list 5 30) 7) 13))
+
 (test-assert "make-lazy-exists" (lambda () make-lazy))
 (test-equal "make-lazy-single" 3 (car (make-lazy '(3 4 5))))
 (test-equal "make-lazy-second" 4 (car ((cdr (make-lazy '(3 4 5))))))
