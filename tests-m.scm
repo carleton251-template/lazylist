@@ -52,3 +52,4 @@
 (test-equal "make-lazy-single" 3 (car (make-lazy '(3 4 5))))
 (test-equal "make-lazy-second" 4 (car ((cdr (make-lazy '(3 4 5))))))
 (test-equal "make-lazy-third" 5 (car ((cdr ((cdr (make-lazy '(3 4 5))))))))
+(test-equal "make-lazy-done" '() ((cdr ((cdr ((cdr (make-lazy '(3 4 5)))))))))

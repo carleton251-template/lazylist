@@ -8,7 +8,7 @@
 
 (let ((one-lazy-item (gen-lazy-list 3 3)))
   (test-equal "gen-lazy-list-single" 3 (car one-lazy-item))
-  (test-assert "gen-lazy-list-single-end-no-error" (not ((cdr one-lazy-item)))))
+  (test-assert "gen-lazy-list-single-end-no-error" (null? ((cdr one-lazy-item)))))
 
 
 (test-equal "neg-inf-seq1" -3 (car (inf-seq -3)))
@@ -24,7 +24,7 @@
   '(5 6 8 9 10 11 12 13 15 16 17 18 19 20 22 23 24 25 26 27 29 30)
   (first-n (filter-multiples (gen-lazy-list 5 30) 7) 500))
 
-(test-assert "gen-lazy-list-empty-no-error" (not (gen-lazy-list 5 3)))
+(test-assert "gen-lazy-list-empty-no-error" (null? (gen-lazy-list 5 3)))
 
-(test-assert "make-lazy-list-empty-no-error" (not (make-lazy '())))
-(test-assert "make-lazy-end-no-error" (not ((cdr ((cdr ((cdr (make-lazy '(3 4 5))))))))))
+(test-assert "make-lazy-list-empty-no-error" (null? (make-lazy '())))
+(test-assert "make-lazy-end-no-error" (null? ((cdr ((cdr ((cdr (make-lazy '(3 4 5))))))))))
